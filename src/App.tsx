@@ -7,7 +7,7 @@ import { fmtInt, fmtUsd, fmtCompact, fmtPrice, ago, transferFeeUsd } from "./lib
 import { WINDOW_BLOCKS, type Pool, type PartnerAsset } from "./lib/metrics";
 
 const EXPLORER = "https://redbelly.routescan.io";
-const short = (a: string) => (a ? a.slice(0, 6) + "…" + a.slice(-4) : "—");
+const short = (a: string) => (a ? a.slice(0, 6) + "…" + a.slice(-4) : "·");
 
 export default function App() {
   const { data, loading, stale, error, lastSuccess, refresh, refreshMs } = useDashboard();
@@ -76,10 +76,10 @@ export default function App() {
               sub={win ? `unique over ${d.windowBlocks} blocks` : "scanning recent blocks"} />
             <StatCard label="Latest block" value={fmtInt(d.blockNumber)}
               sub={<a href={`${EXPLORER}/block/${d.blockNumber}`} target="_blank" rel="noopener">view on explorer ↗</a>} />
-            <StatCard label="Transfer fee (USD)" value={feeUsd != null ? fmtUsd(feeUsd) : "—"} sub="21,000 gas · USD-denominated" />
+            <StatCard label="Transfer fee (USD)" value={feeUsd != null ? fmtUsd(feeUsd) : "·"} sub="21,000 gas · USD-denominated" />
             <StatCard label="RBNT price (on-chain)" value={fmtPrice(d.rbntUsd)} sub="WRBNT / stablecoin pools" />
             <StatCard label="WRBNT in pools" value={fmtCompact(d.wrbntLocked)} sub="liquidity locked across reddex" />
-            <StatCard label="Block utilization" value={util != null ? `${util < 0.01 ? "<0.01" : util.toFixed(2)}%` : "—"} sub="gas used / gas limit" />
+            <StatCard label="Block utilization" value={util != null ? `${util < 0.01 ? "<0.01" : util.toFixed(2)}%` : "·"} sub="gas used / gas limit" />
             <StatCard label="Network" value={d.syncing ? "Syncing" : "Healthy"} accent={!d.syncing}
               sub={`chain ${d.chainId} · mainnet`} />
           </section>
